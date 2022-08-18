@@ -42,7 +42,6 @@ Password: password123
 Like other parts of application Postgres database is containerized and the definition of its Docker container can be found in docker-compose.yml file.
 
 
-This is a Spring Boot (Java) based application that connects with a database that and expose the REST endpoints that can be consumed by frontend. It supports multiple HTTP POST method for one resource - customer, who communicates internally
-with the billing service and the billing-worker-service.
+This is a Spring Boot (Java) based application that connects with a database that and expose the REST endpoints that can be consumed by frontend. It supports multiple HTTP POST method for one resource - customer, which communicates internally with the billing service and the billing-worker-service.
 
 Full list of available REST endpoints could be found in Postman Documentation, which could be called using link: https://documenter.getpostman.com/view/12585925/VUqoPHq8
