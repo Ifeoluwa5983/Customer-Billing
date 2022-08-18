@@ -1,0 +1,5 @@
+com/customerbilling/billing/worker/config/RabbitMqConfig.class
+com/customerbilling/billing/worker/BillingWorkerApplication.class
+com/customerbilling/billing/worker/service/BillerWorkerService.class
+com/customerbilling/billing/worker/DTO/Transaction.class
+com/customerbilling/billing/worker/DTO/Transaction$TransactionBuilder.class

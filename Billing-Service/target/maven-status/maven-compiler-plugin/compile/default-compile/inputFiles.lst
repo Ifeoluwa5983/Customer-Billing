@@ -1,0 +1,13 @@
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/controller/WalletController.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/service/RabbitProducerService.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/DTO/CreateWalletRequest.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/service/WalletService.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/repository/WalletRepository.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/model/Wallet.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/model/Status.java
+/Users/user/customer-billing/Billing-Service/src/main/java/exception/BillingException.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/BillingApplication.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/DTO/FundAccountRequest.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/config/RabbitMqConfig.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/model/Transaction.java
+/Users/user/customer-billing/Billing-Service/src/main/java/com/customerbilling/billing/repository/TransactionRepository.java

@@ -1,0 +1,15 @@
+com/customerbilling/billing/DTO/FundAccountRequest.class
+com/customerbilling/billing/model/Wallet.class
+com/customerbilling/billing/model/Status.class
+com/customerbilling/billing/config/RabbitMqConfig.class
+exception/BillingException.class
+com/customerbilling/billing/DTO/CreateWalletRequest.class
+com/customerbilling/billing/service/RabbitProducerService.class
+com/customerbilling/billing/controller/WalletController.class
+com/customerbilling/billing/model/Transaction.class
+com/customerbilling/billing/repository/WalletRepository.class
+com/customerbilling/billing/BillingApplication.class
+com/customerbilling/billing/repository/TransactionRepository.class
+com/customerbilling/billing/service/WalletService.class
+com/customerbilling/billing/model/Transaction$TransactionBuilder.class
+com/customerbilling/billing/model/Wallet$WalletBuilder.class

@@ -1,0 +1,120 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: customer_billing
+      POSTGRES_PASSWORD: password123
+      POSTGRES_HOST_AUTH_METHOD: md5
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - postgres
+
+  rabbitmq:
+    image: rabbitmq:3.9.11-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - spring
+
+  customer:
+    image: customer
+    build:
+      context: ./Customer-Service
+      dockerfile: Dockerfile
+
+    container_name: customer
+    ports:
+      - "5000:5000"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - DB_URL=postgres
+      - DB_PASSWORD=password123
+      - DB_USERNAME=customer_billing
+      - API_GATEWAY=billing
+      - PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - rabbitmq
+      - billing
+
+  billing:
+    image: billing
+    build:
+      context: ./Billing-Service
+      dockerfile: Dockerfile
+
+    container_name: billing
+    ports:
+      - "7000:7000"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - DB_URL=postgres
+      - DB_PASSWORD=password123
+      - DB_USERNAME=customer_billing
+      - HOST=rabbitmq
+      - PASSWORD=guest
+      - USERNAME=guest
+      - PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - rabbitmq
+
+
+  worker:
+    image: worker
+    build:
+      context: ./Billing-Worker-Service
+      dockerfile: Dockerfile
+
+    container_name: worker
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - HOST=rabbitmq
+      - PASSWORD=guest
+      - USERNAME=guest
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - rabbitmq
+
+
+networks:
+  postgres:
+    driver: bridge
+  spring:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:

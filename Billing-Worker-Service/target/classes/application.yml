@@ -1,0 +1,9 @@
+spring:
+  rabbitmq:
+    host: ${HOST}
+    password: ${PASSWORD}
+    port: 15672
+    username: ${USERNAME}
+    exchange: user.exchange
+    queue: user.queue
+    routingkey: user.routingkey
